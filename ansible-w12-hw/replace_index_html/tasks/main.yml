@@ -1,0 +1,7 @@
+# tasks file for website_deployment
+- name: customize index html
+  copy:
+    src: "{{ new_html_file }}"
+    dest: "{{ destination_location }}"
+    mode: 0644
+    backup: yes

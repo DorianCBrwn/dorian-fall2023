@@ -1,0 +1,21 @@
+# tasks file for web_server_service
+      
+    - name: Start httpd service
+      service:
+        name: httpd
+        state: started
+        enabled: true
+
+    - name: Get httpd version
+      command: httpd -v
+      register: version_command_output
+    - debug:
+        var: version_command_output.stdout_lines
+
+    - name: Get httpd Service status
+      command: systemctl status httpd
+      register: status_command_output
+    - debug:
+        var: status_command_output.stdout_lines
+
+

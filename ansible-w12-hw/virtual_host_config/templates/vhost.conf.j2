@@ -1,0 +1,32 @@
+{# Matches any request made on port 80#}
+<VirtualHost *:{{ http_port  }}>
+
+    {# Email of the person managing this domain - used for server-generated emails#}
+    ServerAdmin {{ vhost_server_admin }}
+
+    {# The base domain name of the server#}
+    ServerName {{ vhost_server_name }}
+    
+    {# additional name that  #}
+    ServerAlias www.{{ vhost_server_name }}
+
+    {# Path to the document root directory where the website files are stored#}
+    DocumentRoot {{ vhost_document_root }}
+
+    {# Directory block to apply settings to the specified document root#}
+    <Directory {{ vhost_document_root }}>
+        {# AllowOverride All allows the use of .htaccess within the document root#}
+        AllowOverride All
+
+        {# Require all granted allows access to this directory from all hosts#}
+        Require all granted
+    </Directory>
+
+    {# Path to the error log file where server errors are logged#}
+    ErrorLog {{ apache_log_dir }}/error.log
+
+    {# Path to the access log file with a 'combined' log format (includes standard info plus referrer and user agent)#}
+    CustomLog {{ apache_log_dir }}/access.log combined
+
+</VirtualHost>
+

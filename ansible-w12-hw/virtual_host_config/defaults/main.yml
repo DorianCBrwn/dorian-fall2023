@@ -1,0 +1,7 @@
+---
+# defaults file for virtual_host_config
+http_port: "8081"
+vhost_server_name: "myexample.com"
+vhost_server_admin: "webmaster@myexample.com"
+vhost_document_root: "/var/www/html/"
+apache_log_dir: "/var/log/httpd"

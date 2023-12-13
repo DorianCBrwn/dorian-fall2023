@@ -1,0 +1,7 @@
+# tasks file for website_deployment
+- name: create base index.html
+  copy:
+    src: "{{ base_website_file_path }}"
+    dest: "{{ vhost_document_root }}"
+    mode: 0755
+    backup: yes

@@ -1,0 +1,6 @@
+---
+# handlers file for virtual_host_config
+- name: Restart apache
+  service:
+    name: httpd
+    state: restarted

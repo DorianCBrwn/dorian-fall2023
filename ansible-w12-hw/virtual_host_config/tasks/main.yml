@@ -1,0 +1,28 @@
+---
+# tasks file for virtual_host_config
+
+- name: Create a virtual host config file
+  template:
+    src: vhost.conf.j2
+    dest: /etc/httpd/conf.d/{{ vhost_server_name }}.conf
+  notify: Restart Apache
+  when: ansible_os_family == "RedHat"
+
+- name: Check if the virtual host config file is valid
+  command: httpd -t
+  register: httpd_config_check
+  ignore_errors: true
+
+- name: Debug virtual host config check
+  debug:
+    var: httpd_config_check.stdout_lines
+
+- name: List all virtual hosts
+  command: httpd -S
+  register: httpd_virtual_hosts
+  changed_when: false
+  ignore_errors: true
+
+- name: Debug list of all virtual hosts
+  debug:
+    var: httpd_virtual_hosts.stdout_lines

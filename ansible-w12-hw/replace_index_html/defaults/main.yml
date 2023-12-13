@@ -1,0 +1,4 @@
+---
+# defaults file for replace_index-html
+new_html_file: index.html
+destination_location: /var/www/html

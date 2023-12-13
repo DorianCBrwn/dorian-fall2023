@@ -1,0 +1,9 @@
+---
+- name: Create Apache web server
+  hosts: all
+  become: true
+  roles: 
+    - apache_install
+    - virtual_host_config
+    - website_deployment
+    - replace_index_html
