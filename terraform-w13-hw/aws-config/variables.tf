@@ -3,3 +3,9 @@ variable "instance_type" {
     type        = string
     default     = "t2.micro"
 }
+
+variable "security_group"{
+    description = "The security group for ec2"
+    type        = string
+    default     = "sg-07489053414ce4490"
+}
