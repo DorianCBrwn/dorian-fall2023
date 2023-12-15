@@ -12,7 +12,7 @@ terraform {
 resource "aws_instance" "app_server" {
   ami           = "ami-0fc5d935ebf8bc3bc"
   instance_type = var.instance_type
-  security_groups = "sg-07489053414ce4490"
+  security_groups = [ "sg-07489053414ce4490" ]
   key_name = var.key_name
 
 
