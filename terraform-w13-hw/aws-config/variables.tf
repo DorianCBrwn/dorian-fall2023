@@ -9,3 +9,9 @@ variable "security_group"{
     type        = string
     default     = "sg-07489053414ce4490"
 }
+
+variable "key_name"{
+    description = "The key name for ec2"
+    type        = string
+    default     = "default"
+}
