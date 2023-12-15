@@ -26,7 +26,7 @@ resource "aws_internet_gateway" "my_internet_gateway" {
   vpc_id = aws_vpc.my_vpc.id
 }
 
-resource "aws_subnet_network_acl_association" "my_subnet_nacl_association" {
+resource "aws_network_acl_association" "network_nacl_association" {
   subnet_id      = aws_subnet.my_subnet.id
   network_acl_id = aws_network_acl.my_nacl.id
 }
