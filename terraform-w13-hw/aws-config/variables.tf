@@ -13,5 +13,5 @@ variable "security_group"{
 variable "key_name"{
     description = "The key name for ec2"
     type        = string
-    default     = "default"
+    default     = "general-ec2"
 }
