@@ -20,11 +20,8 @@ resource "aws_security_group" "example" {
 }
 
 # This block defines the resource "aws_vpc" which creates a VPC.
-resource "aws_vpc" "example" {
-    cidr_block = "10.0.0.0/16"
-}
 resource "aws_vpc" "main_vpc" {
-  cidr_block = "var.vpc_cider_block"
+  cidr_block = "10.0.0.0/16"
 }
 
 resource "aws_subnet" "public_subnets" {
