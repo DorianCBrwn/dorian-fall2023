@@ -1,19 +1,60 @@
-resource "aws_vpc" "my_vpc" {
+# main.tf
+
+# This block defines the provider configuration for AWS.
+provider "aws" {
+    region = "us-west-2"
+}
+
+# This block defines the resource "aws_instance" which creates an EC2 instance.
+resource "aws_instance" "example" {
+    ami           = "ami-0c94855ba95c71c99"
+    instance_type = "t2.micro"
+}
+
+# This block defines the resource "aws_security_group" which creates a security group.
+resource "aws_security_group" "example" {
+    name        = "example-security-group"
+    description = "Example security group"
+    vpc_id      = aws_vpc.example.id
+
+    ingress {
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+
+    egress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
+    }
+}
+
+# This block defines the resource "aws_vpc" which creates a VPC.
+resource "aws_vpc" "example" {
+    cidr_block = "10.0.0.0/16"
+}
+resource "aws_vpc" "main_vpc" {
   cidr_block = "var.vpc_cider_block"
 }
 
-resource "aws_subnet" "my_subnet" {
-  vpc_id                  = aws_vpc.my_vpc.id
-  cidr_block              = "10.0.1.0/24"
+resource "aws_subnet" "public_subnets" {
+  # count is used to create multiple subnets based on the number of cidr blocks
+  count                  = length(var.public_subnet_cidrs)
+  vpc_id                  = aws_vpc.main_vpc.id
+  # select the cidr block from the list of cidr blocks
+  cidr_block              = element(var.public_subnet_cidrs, count.index)
   availability_zone       = "us-east-1a"
 }
 
 resource "aws_network_acl" "my_nacl" {
-  vpc_id = aws_vpc.my_vpc.id
+  vpc_id = aws_vpc.main_vpc.id
 }
 
 resource "aws_route_table" "my_route_table" {
-  vpc_id = aws_vpc.my_vpc.id
+  vpc_id = aws_vpc.main_vpc.id
 }
 
 resource "aws_route" "my_route" {
@@ -23,7 +64,7 @@ resource "aws_route" "my_route" {
 }
 
 resource "aws_internet_gateway" "my_internet_gateway" {
-  vpc_id = aws_vpc.my_vpc.id
+  vpc_id = aws_vpc.main_vpc.id
 }
 
 resource "aws_network_acl_association" "network_nacl_association" {
@@ -34,4 +75,11 @@ resource "aws_network_acl_association" "network_nacl_association" {
 resource "aws_route_table_association" "my_route_table_association" {
   subnet_id      = aws_subnet.my_subnet.id
   route_table_id = aws_route_table.my_route_table.id
+}
+
+variable "public_subnet_cidrs"  {
+    type = list(string)
+    description = "value of cidr blocks for public subnets"
+    default =  ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+
 }
