@@ -32,12 +32,12 @@ resource "aws_internet_gateway" "my_internet_gateway" {
 }
 
 resource "aws_network_acl_association" "network_nacl_association" {
-    subnet_id      = aws_subnet.public_subnets.id
+    subnet_id      = aws_subnet.public_subnets[0].id
     network_acl_id = aws_network_acl.my_nacl.id
 }
 
 resource "aws_route_table_association" "my_route_table_association" {
-    subnet_id      = aws_subnet.public_subnets.id
+    subnet_id      = aws_subnet.public_subnets[0].id
     route_table_id = aws_route_table.my_route_table.id
 }
 

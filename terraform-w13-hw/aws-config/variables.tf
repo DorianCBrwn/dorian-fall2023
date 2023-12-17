@@ -15,9 +15,3 @@ variable "key_name"{
     type        = string
     default     = "general-ec2"
 }
-
-variable "my_ip_cider"{
-    description = "The cider block for ec2"
-    type        = string
-    default     = "71.172.197.159/32"
-}
