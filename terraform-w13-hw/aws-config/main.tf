@@ -17,7 +17,7 @@ resource "aws_instance" "app_server" {
   vpc_security_group_ids = [var.security_group]
   key_name               = var.key_name
 
-subnet_id = aws_subnet.main_vpc.id
+subnet_id = aws_subnet.public_subnets[count.1].id
 
   tags = {
     Name = "terraform-ec2"
