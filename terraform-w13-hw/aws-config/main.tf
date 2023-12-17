@@ -10,7 +10,7 @@ terraform {
 }
 
 module "ec2-vpc-module" {
-  source = "./modues/ec2-vpc"
+  source = "./modules/ec2-vpc"
 
 
 
