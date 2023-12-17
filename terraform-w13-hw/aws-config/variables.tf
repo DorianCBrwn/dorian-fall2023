@@ -4,12 +4,6 @@ variable "instance_type" {
     default     = "t3.micro"
 }
 
-variable "security_group"{
-    description = "The security group for ec2"
-    type        = string
-    default     = var.ec2-security-group
-}
-
 variable "key_name"{
     description = "The key name for ec2"
     type        = string
