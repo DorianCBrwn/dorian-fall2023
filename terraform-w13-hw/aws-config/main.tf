@@ -6,8 +6,6 @@ terraform {
     }
   }
 
-
-
   required_version = ">= 1.2.0"
 }
 
@@ -17,7 +15,7 @@ resource "aws_instance" "app_server" {
   vpc_security_group_ids = [var.security_group]
   key_name               = var.key_name
 
-subnet_id = aws_subnet.public_subnets[count.1].id
+  subnet_id = aws_subnet.public_subnets[0].id
 
   tags = {
     Name = "terraform-ec2"
