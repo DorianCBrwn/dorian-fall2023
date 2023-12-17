@@ -1,6 +1,7 @@
 resource "aws_security_group" "ec2-security-group" {
     name        = "terraform-security-group"
     description = "Security group made by terraform"
+    vpc_id = aws_vpc.main_vpc.id
 
     ingress {
         from_port   = 22
@@ -24,6 +25,6 @@ resource "aws_security_group" "ec2-security-group" {
     }
 
     tags = {
-        Name = "example-security-group"
+        Name = "terraform-security-group"
     }
 }
