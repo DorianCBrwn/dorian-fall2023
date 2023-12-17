@@ -1,24 +1,3 @@
-# This block defines the resource "aws_security_group" which creates a security group.
-resource "aws_security_group" "example" {
-    name        = "example-security-group"
-    description = "Example security group"
-    vpc_id      = aws_vpc.example.id
-
-    ingress {
-        from_port   = 22
-        to_port     = 22
-        protocol    = "tcp"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-
-    egress {
-        from_port   = 0
-        to_port     = 0
-        protocol    = "-1"
-        cidr_blocks = ["0.0.0.0/0"]
-    }
-}
-
 # This block defines the resource "aws_vpc" which creates a VPC.
 resource "aws_vpc" "main_vpc" {
   cidr_block = "10.0.0.0/16"
