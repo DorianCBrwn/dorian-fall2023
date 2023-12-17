@@ -7,7 +7,7 @@ variable "instance_type" {
 variable "security_group"{
     description = "The security group for ec2"
     type        = string
-    default     = "sg-07489053414ce4490"
+    default     = var.ec2-security-group
 }
 
 variable "key_name"{
