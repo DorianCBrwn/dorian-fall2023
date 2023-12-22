@@ -9,7 +9,7 @@ resource "aws_instance" "app_server" {
     volume_type = "gp3"
   }
 
-  subnet_id = aws_subnet.public_subnets[0].id
+  subnet_id = module.vpc.public_subnets[0].id
 
   tags = {
     Name = "terraform-ec2"
@@ -19,7 +19,7 @@ resource "aws_instance" "app_server" {
 resource "aws_security_group" "ec2-security-group" {
     name        = "terraform-security-group"
     description = "Security group made by terraform"
-    vpc_id = aws_vpc.main_vpc.id
+    vpc_id = module.vpc.vpc_id
 
     ingress {
         from_port   = 22
