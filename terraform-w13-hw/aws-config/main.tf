@@ -9,7 +9,7 @@ terraform {
   required_version = ">= 1.2.0"
 }
 
-module "ec2-vpc-module" {
+module "ec2-module" {
   source = "./modules/ec2"
 
 }
