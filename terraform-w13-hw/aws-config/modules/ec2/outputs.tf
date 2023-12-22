@@ -1,17 +1,11 @@
 # Output variable definitions
-
-output "instance_id" {
-    value = ec2-instance.id
+output "public_ip" {
+    value = aws_instance.app_server[*].public_ip
 }
 
-output "instance_public_ip" {
-    value = ec2-instance.public_ip
+output "ec2_tags" {
+  value = aws_instance.app_server[*].tags_all.Name
 }
-
-output "instance_private_ip" {
-    value = ec2-instance.private_ip
-}
-
-output "instance_key_name" {
-    value = ec2-instance.key_name
+output "ec2_id" {
+  value = aws_instance.app_server[*].id
 }
