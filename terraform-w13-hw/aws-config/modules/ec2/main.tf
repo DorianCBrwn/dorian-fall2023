@@ -13,7 +13,6 @@ resource "aws_instance" "app_server" {
   }
 
   subnet_id = module.vpc-module.public_subnets[0].id
-
   tags = {
     Name = "terraform-ec2"
   }
