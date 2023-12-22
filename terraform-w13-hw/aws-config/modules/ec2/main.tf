@@ -12,7 +12,7 @@ resource "aws_instance" "app_server" {
     volume_type = "gp3"
   }
 
-  subnet_id = module.vpc-module.public_subnets
+  subnet_id = module.vpc-module.public_subnets[0]
   tags = {
     Name = "terraform-ec2"
   }
