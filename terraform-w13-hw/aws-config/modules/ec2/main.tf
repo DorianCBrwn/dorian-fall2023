@@ -1,3 +1,21 @@
+resource "aws_instance" "app_server" {
+  ami                    = var.instance_ami
+  instance_type          = var.instance_type
+  vpc_security_group_ids = [aws_security_group.ec2-security-group.id]
+  key_name               = var.key_name
+
+  root_block_device {
+    volume_size = var.instance_root_device_size
+    volume_type = "gp3"
+  }
+
+  subnet_id = aws_subnet.public_subnets[0].id
+
+  tags = {
+    Name = "terraform-ec2"
+  }
+}
+
 resource "aws_security_group" "ec2-security-group" {
     name        = "terraform-security-group"
     description = "Security group made by terraform"

@@ -1,3 +1,4 @@
+
 # This block defines the resource "aws_vpc" which creates a VPC.
 
 resource "aws_vpc" "main_vpc" {
