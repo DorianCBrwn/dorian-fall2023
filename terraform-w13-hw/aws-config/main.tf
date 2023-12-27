@@ -16,3 +16,7 @@ module "ec2-module" {
 module "vpc-module" {
   source = "./modules/vpc"
 }
+
+module "import-ec2" {
+  source = "./modules/import-ec2"
+}
