@@ -11,7 +11,6 @@ terraform {
 
 resource "aws_instance" "import-ec2" {
     ami = "ami-0fc5d935ebf8bc3bc"
-    instance_type = " unknown"
     launch_template {
        name    = "basic-ec2-ubuntu"
        version = "1"
