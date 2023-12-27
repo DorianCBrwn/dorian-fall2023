@@ -10,7 +10,7 @@ terraform {
 }
 
 resource "aws_instance" "import-ec2" {
-    ami = "unknown"
+    ami = "ami-0fc5d935ebf8bc3bc"
     instance_type = " unknown"
 }
 
